@@ -38,6 +38,10 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.lblFile = new System.Windows.Forms.Label();
             this.lblLine = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.lblSearchResults = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,7 +126,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFile.AutoSize = true;
             this.lblFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFile.Location = new System.Drawing.Point(9, 33);
+            this.lblFile.Location = new System.Drawing.Point(13, 24);
             this.lblFile.Name = "lblFile";
             this.lblFile.Size = new System.Drawing.Size(27, 13);
             this.lblFile.TabIndex = 2;
@@ -139,11 +143,54 @@
             this.lblLine.TabIndex = 3;
             this.lblLine.Text = "-";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Search:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Enabled = false;
+            this.txtSearch.Location = new System.Drawing.Point(63, 48);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(169, 20);
+            this.txtSearch.TabIndex = 5;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Enabled = false;
+            this.btnNext.Location = new System.Drawing.Point(238, 46);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(62, 23);
+            this.btnNext.TabIndex = 6;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // lblSearchResults
+            // 
+            this.lblSearchResults.AutoSize = true;
+            this.lblSearchResults.Location = new System.Drawing.Point(306, 51);
+            this.lblSearchResults.Name = "lblSearchResults";
+            this.lblSearchResults.Size = new System.Drawing.Size(24, 13);
+            this.lblSearchResults.TabIndex = 7;
+            this.lblSearchResults.Text = "0/0";
+            this.lblSearchResults.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 492);
+            this.Controls.Add(this.lblSearchResults);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblLine);
             this.Controls.Add(this.lblFile);
             this.Controls.Add(this.listBox1);
@@ -171,6 +218,10 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label lblFile;
         private System.Windows.Forms.Label lblLine;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label lblSearchResults;
     }
 }
 

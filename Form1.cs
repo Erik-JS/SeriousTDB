@@ -12,6 +12,11 @@ namespace SeriousTDB
 {
     public partial class Form1 : Form
     {
+
+        public List<int> lstSearchResults = new List<int>();
+
+        public int currentSearchResultIndex;
+
         public Form1()
         {
             InitializeComponent();
@@ -40,6 +45,10 @@ namespace SeriousTDB
             {
                 listBox1.Items.Add(t.Item1);
             }
+            txtSearch.Enabled = true;
+            txtSearch.Clear();
+            btnNext.Enabled = false;
+            lblSearchResults.Visible = false;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,6 +105,46 @@ namespace SeriousTDB
                 lblFile.Text = sfd.FileName;
                 lblFile.ForeColor = Color.Blue;
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if(txtSearch.Text.Length == 0)
+            {
+                btnNext.Enabled = false;
+                lblSearchResults.Visible = false;
+                return;
+            }
+            lstSearchResults.Clear();
+            lblSearchResults.Visible = true;
+            for (int i = 0; i < Tdb.lstTdb.Count; i++)
+            {
+                if (Tdb.lstTdb[i].Item1.IndexOf(txtSearch.Text, StringComparison.OrdinalIgnoreCase) != -1)
+                {
+                    lstSearchResults.Add(i);
+                }
+            }
+            if (lstSearchResults.Count == 0)
+            {
+                btnNext.Enabled = false;
+                lblSearchResults.Text = "0/0";
+                return;
+            }
+            btnNext.Enabled = true;
+            currentSearchResultIndex = 0;
+            UpdateSearchResultsLabelAndListBox();
+        }
+
+        private void UpdateSearchResultsLabelAndListBox()
+        {
+            lblSearchResults.Text = String.Format("{0}/{1}", currentSearchResultIndex + 1, lstSearchResults.Count);
+            listBox1.SelectedIndex = lstSearchResults[currentSearchResultIndex];
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            currentSearchResultIndex = (++currentSearchResultIndex % lstSearchResults.Count);
+            UpdateSearchResultsLabelAndListBox();
         }
     }
 }
